@@ -1,0 +1,11 @@
+{
+  "tower_leg_base_plate": "Tower leg base plate: Connects the tower leg to the foundation. Dimensions approximately 600x600mm, with a central hole for the leg and four corner holes for anchor bolts. Plate thickness EST. Use datums on the plate edges for hole locations.",
+  "crossarm_insulator_bracket": "Crossarm insulator bracket: Supports the insulator string from the crossarm. Complex shape with multiple gussets and connection points. Dimensions EST, material thickness EST. Include all bolt hole diameters and locations.",
+  "crossarm_to_tower_gusset": "Gusset plate connecting the crossarm to the tower body. Triangular shape with clipped corners. Dimensions EST, thickness EST. Specify bolt hole diameters and locations relative to gusset edges.",
+  "tower_leg_splice_plate": "Tower leg splice plate: Used to join sections of the tower leg. Rectangular plate with multiple bolt holes arranged in a staggered pattern. Dimensions EST, thickness EST. Dimension hole locations from plate edges.",
+  "diagonal_member_gusset": "Gusset plate connecting diagonal bracing members to the tower legs. Complex geometry to accommodate multiple members. Dimensions EST, thickness EST. Specify bolt hole diameters and locations.",
+  "crossarm_splice_plate": "Crossarm splice plate: Joins sections of the crossarm. Rectangular plate with multiple bolt holes. Dimensions EST, thickness EST. Dimension hole locations from plate edges.",
+  "tower_apex_plate": "Tower apex plate: Connects the top members of the tower. Complex geometry with multiple connection points. Dimensions EST, thickness EST. Specify bolt hole diameters and locations.",
+  "insulator_attachment_cleat": "Insulator attachment cleat: Connects the insulator string to the crossarm. U-shaped cleat with bolt holes for attachment. Dimensions EST, material thickness EST. Include all bolt hole diameters and locations.",
+  "horizontal_member_gusset": "Gusset plate connecting horizontal bracing members to the tower legs. Triangular shape with clipped corners. Dimensions EST, thickness EST. Specify bolt hole diameters and locations relative to gusset edges."
+}

@@ -1,0 +1,68 @@
+{
+  "stem": "input",
+  "input": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/Resource/input.png",
+  "gemini_model": "gemini-2.5-flash",
+  "two_stage": true,
+  "stage1_model": "gemini-2.0-flash",
+  "stage2_model": "gemini-2.5-flash",
+  "stage2_batch_size": 3,
+  "stage2_max_workers": 4,
+  "gemini_max_output_tokens": 65536,
+  "target_component_count": 9,
+  "gemini_single_json_call": false,
+  "component_count_requested": 9,
+  "warnings": [],
+  "raw_text_path": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/input_gemini_codegen_raw.txt",
+  "component_plan_raw_text_path": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/input_gemini_component_plan_raw.txt",
+  "component_plan_json_path": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/input_gemini_component_plan.json",
+  "ai_response_json_path": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/input_gemini_codegen_ai_response.json",
+  "components": {
+    "tower_apex_plate": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/tower_apex_plate.py"
+    },
+    "insulator_attachment_cleat": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/insulator_attachment_cleat.py"
+    },
+    "horizontal_member_gusset": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/horizontal_member_gusset.py"
+    },
+    "tower_leg_base_plate": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/tower_leg_base_plate.py"
+    },
+    "crossarm_insulator_bracket": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/crossarm_insulator_bracket.py"
+    },
+    "crossarm_to_tower_gusset": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/crossarm_to_tower_gusset.py"
+    },
+    "tower_leg_splice_plate": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/tower_leg_splice_plate.py"
+    },
+    "diagonal_member_gusset": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/diagonal_member_gusset.py"
+    },
+    "crossarm_splice_plate": {
+      "script": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_scripts/crossarm_splice_plate.py"
+    }
+  },
+  "dxfs": {
+    "tower_apex_plate": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/tower_apex_plate.dxf",
+    "insulator_attachment_cleat": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/insulator_attachment_cleat.dxf",
+    "horizontal_member_gusset": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/horizontal_member_gusset.dxf",
+    "tower_leg_base_plate": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/tower_leg_base_plate.dxf",
+    "crossarm_insulator_bracket": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/crossarm_insulator_bracket.dxf",
+    "crossarm_to_tower_gusset": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/crossarm_to_tower_gusset.dxf",
+    "tower_leg_splice_plate": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/tower_leg_splice_plate.dxf",
+    "diagonal_member_gusset": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/diagonal_member_gusset.dxf",
+    "crossarm_splice_plate": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/gemini_codegen_dxfs/crossarm_splice_plate.dxf"
+  },
+  "script_errors": {},
+  "assembly_dxf": "/Users/ayush8914/Desktop/DesignToComponent/GeometryProject/out_gemini_codegen/input_gemini_codegen_assembly.dxf",
+  "assembly_layout": "grid",
+  "grid_columns": 3,
+  "component_sheet": {
+    "json": null,
+    "markdown": null,
+    "warnings": []
+  }
+}

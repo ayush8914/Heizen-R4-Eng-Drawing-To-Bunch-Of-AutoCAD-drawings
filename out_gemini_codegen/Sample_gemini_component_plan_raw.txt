@@ -1,0 +1,13 @@
+```json
+{
+  "tower_leg_splice_plate_lower": "Rectangular splice plate, likely 250mm x 28mm thick. Connects vertical tower legs. Part number likely 721, with multiple bolt holes for connection to the legs. Confirm material type.",
+  "tower_leg_splice_plate_upper": "Rectangular splice plate, likely 250mm x 28mm thick. Connects vertical tower legs. Part number likely 722, with multiple bolt holes for connection to the legs. Confirm material type.",
+  "diagonal_brace_gusset_738": "Gusset plate connecting diagonal brace L90x9 to tower leg. Includes holes for M27 bolts. Check connection geometry and material thickness. Dimensions needed.",
+  "horizontal_brace_gusset_735": "Gusset plate connecting horizontal brace BLE 28x330 to tower leg. Includes holes for M24 bolts. Check connection geometry and material thickness. Dimensions needed.",
+  "tower_leg_base_plate_734": "Base plate for tower leg connection to foundation. Likely rectangular. Requires multiple bolt holes for both the leg and foundation connections. Plate is BLE 20x290. Confirm material type and anchor bolt pattern.",
+  "horizontal_brace_gusset_737": "Gusset plate connecting horizontal brace BLE 28x345 to tower leg. Includes holes for M24 bolts. Check connection geometry and material thickness. Dimensions needed.",
+  "diagonal_brace_gusset_714": "Gusset plate connecting diagonal brace L150x15 to tower leg. Includes holes for M27 bolts. Check connection geometry and material thickness. Dimensions needed.",
+  "diagonal_brace_gusset_719": "Gusset plate connecting diagonal brace L50x15 to tower leg. Includes holes for M27 bolts. Check connection geometry and material thickness. Dimensions needed.",
+  "splice_plate_707": "Connection splice plate detail showing 4 members intersecting. All the members have same section profile which seems to be 250x28 section. Confirm section profile and thickness. Members are 731, 728, 707, 727."
+}
+```

@@ -1,0 +1,164 @@
+import sys
+import ezdxf
+import math
+
+def add_linear_dimension(msp, p1, p2, offset, text, layer="DIMENSION", text_layer="ANNOTATION", char_height=5):
+    # Extension lines
+    msp.add_line((p1[0], p1[1]), (p1[0], p1[1] + offset), dxfattribs={'layer': layer})
+    msp.add_line((p2[0], p2[1]), (p2[0], p2[1] + offset), dxfattribs={'layer': layer})
+
+    # Dimension line
+    msp.add_line((p1[0], p1[1] + offset), (p2[0], p2[1] + offset), dxfattribs={'layer': layer})
+
+    # Arrowheads (simple triangles)
+    arrow_size = 2.5 # Adjust as needed for visual scale
+    
+    # Left arrow
+    arrow_p1_left = (p1[0], p1[1] + offset)
+    arrow_p2_left = (p1[0] + arrow_size, p1[1] + offset - arrow_size)
+    arrow_p3_left = (p1[0] + arrow_size, p1[1] + offset + arrow_size)
+    msp.add_lwpolyline([arrow_p1_left, arrow_p2_left, arrow_p3_left, arrow_p1_left], close=True, dxfattribs={'layer': layer})
+    
+    # Right arrow
+    arrow_p1_right = (p2[0], p2[1] + offset)
+    arrow_p2_right = (p2[0] - arrow_size, p2[1] + offset - arrow_size)
+    arrow_p3_right = (p2[0] - arrow_size, p2[1] + offset + arrow_size)
+    msp.add_lwpolyline([arrow_p1_right, arrow_p2_right, arrow_p3_right, arrow_p1_right], close=True, dxfattribs={'layer': layer})
+
+    # Dimension text
+    text_mid_x = (p1[0] + p2[0]) / 2
+    text_y = p1[1] + offset + char_height / 2 + 1 # small offset to clear line
+    mt = msp.add_mtext(text, dxfattribs={'layer': text_layer, 'char_height': char_height})
+    mt.set_location((text_mid_x, text_y), attachment_point=5) # Middle center
+
+def add_vertical_dimension(msp, p1, p2, offset, text, layer="DIMENSION", text_layer="ANNOTATION", char_height=5):
+    # Extension lines
+    msp.add_line((p1[0], p1[1]), (p1[0] + offset, p1[1]), dxfattribs={'layer': layer})
+    msp.add_line((p2[0], p2[1]), (p2[0] + offset, p2[1]), dxfattribs={'layer': layer})
+
+    # Dimension line
+    msp.add_line((p1[0] + offset, p1[1]), (p2[0] + offset, p2[1]), dxfattribs={'layer': layer})
+
+    # Arrowheads (simple triangles)
+    arrow_size = 2.5 # Adjust as needed for visual scale
+
+    # Bottom arrow
+    arrow_p1_bottom = (p1[0] + offset, p1[1])
+    arrow_p2_bottom = (p1[0] + offset - arrow_size, p1[1] + arrow_size)
+    arrow_p3_bottom = (p1[0] + offset + arrow_size, p1[1] + arrow_size)
+    msp.add_lwpolyline([arrow_p1_bottom, arrow_p2_bottom, arrow_p3_bottom, arrow_p1_bottom], close=True, dxfattribs={'layer': layer})
+
+    # Top arrow
+    arrow_p1_top = (p2[0] + offset, p2[1])
+    arrow_p2_top = (p2[0] + offset - arrow_size, p2[1] - arrow_size)
+    arrow_p3_top = (p2[0] + offset + arrow_size, p2[1] - arrow_size)
+    msp.add_lwpolyline([arrow_p1_top, arrow_p2_top, arrow_p3_top, arrow_p1_top], close=True, dxfattribs={'layer': layer})
+
+    # Dimension text
+    text_mid_y = (p1[1] + p2[1]) / 2
+    text_x = p1[0] + offset + char_height / 2 + 1 # small offset to clear line
+    mt = msp.add_mtext(text, dxfattribs={'layer': text_layer, 'char_height': char_height})
+    mt.set_location((text_x, text_mid_y), attachment_point=5) # Middle center
+
+def create_cross_brace_gusset_plate_dxf(output_filename):
+    doc = ezdxf.new("R2010", setup=True)
+    doc.units = ezdxf.units.MM
+    msp = doc.modelspace()
+
+    # Define Layers
+    doc.layers.add("GEOMETRY", color=7)  # White/Black
+    doc.layers.add("DIMENSION", color=3) # Green
+    doc.layers.add("ANNOTATION", color=1) # Red
+
+    # --- GEOMETRY ---
+    
+    gusset_base_width = 300
+    gusset_height = 250
+    gusset_thickness = 10 # mm, EST
+    hole_diameter_gusset = 18 # mm, EST
+    hole_radius_gusset = hole_diameter_gusset / 2
+
+    # Define points for a typical gusset shape
+    gusset_p1 = (0, 0)
+    gusset_p2 = (gusset_base_width, 0) # 300, 0
+    gusset_p3 = (gusset_base_width - 50, gusset_height) # 250, 250
+    gusset_p4 = (0, gusset_height - 50) # 0, 200
+
+    # Hole positions (Estimated based on common practice for connections)
+    hole_pos_leg1 = (50, 50)
+    hole_pos_leg2 = (50, 150)
+    hole_pos_brace1 = (200, 100) 
+    hole_pos_brace2 = (250, 200)
+
+    
+    # Main plate outline
+    points = [
+        (gusset_p1[0], gusset_p1[1]),
+        (gusset_p2[0], gusset_p2[1]),
+        (gusset_p3[0], gusset_p3[1]),
+        (gusset_p4[0], gusset_p4[1]),
+    ]
+    msp.add_lwpolyline(points, close=True, dxfattribs={'layer': 'GEOMETRY'})
+
+    # Bolt holes
+    hole_positions_gusset = [
+        (hole_pos_leg1[0], hole_pos_leg1[1]),
+        (hole_pos_leg2[0], hole_pos_leg2[1]),
+        (hole_pos_brace1[0], hole_pos_brace1[1]),
+        (hole_pos_brace2[0], hole_pos_brace2[1]),
+    ]
+    for hp in hole_positions_gusset:
+        msp.add_circle(hp, hole_radius_gusset, dxfattribs={'layer': 'GEOMETRY'})
+
+    # --- DIMENSIONS ---
+    
+    # Overall dimensions
+    # Horizontal
+    add_linear_dimension(msp, (gusset_p1[0], gusset_p1[1]), (gusset_p2[0], gusset_p2[1]), -50, f'{gusset_base_width}', text_layer='ANNOTATION', char_height=5)
+    
+    # Vertical (left side)
+    add_vertical_dimension(msp, (gusset_p1[0], gusset_p1[1]), (gusset_p4[0], gusset_p4[1]), -50, f'{gusset_height - 50}', text_layer='ANNOTATION', char_height=5)
+    # Vertical (right side)
+    add_vertical_dimension(msp, (gusset_p2[0], gusset_p2[1]), (gusset_p3[0], gusset_p3[1]), 50, f'{gusset_height}', text_layer='ANNOTATION', char_height=5)
+
+    # Hole dimensioning from datum (0,0)
+    # X-coordinates and Y-coordinates for all holes from (0,0) datum
+    add_linear_dimension(msp, (0, hole_pos_leg1[1]), (hole_pos_leg1[0], hole_pos_leg1[1]), -25, f'{hole_pos_leg1[0]}', text_layer='ANNOTATION', char_height=5)
+    add_vertical_dimension(msp, (hole_pos_leg1[0], 0), (hole_pos_leg1[0], hole_pos_leg1[1]), 25, f'{hole_pos_leg1[1]}', text_layer='ANNOTATION', char_height=5)
+
+    add_linear_dimension(msp, (0, hole_pos_leg2[1]), (hole_pos_leg2[0], hole_pos_leg2[1]), -40, f'{hole_pos_leg2[0]}', text_layer='ANNOTATION', char_height=5)
+    add_vertical_dimension(msp, (hole_pos_leg2[0], 0), (hole_pos_leg2[0], hole_pos_leg2[1]), 40, f'{hole_pos_leg2[1]}', text_layer='ANNOTATION', char_height=5)
+
+    add_linear_dimension(msp, (0, hole_pos_brace1[1]), (hole_pos_brace1[0], hole_pos_brace1[1]), -60, f'{hole_pos_brace1[0]}', text_layer='ANNOTATION', char_height=5)
+    add_vertical_dimension(msp, (hole_pos_brace1[0], 0), (hole_pos_brace1[0], hole_pos_brace1[1]), 60, f'{hole_pos_brace1[1]}', text_layer='ANNOTATION', char_height=5)
+    
+    add_linear_dimension(msp, (0, hole_pos_brace2[1]), (hole_pos_brace2[0], hole_pos_brace2[1]), -75, f'{hole_pos_brace2[0]}', text_layer='ANNOTATION', char_height=5)
+    add_vertical_dimension(msp, (hole_pos_brace2[0], 0), (hole_pos_brace2[0], hole_pos_brace2[1]), 75, f'{hole_pos_brace2[1]}', text_layer='ANNOTATION', char_height=5)
+
+    # Hole size annotation
+    mt = msp.add_mtext(f'4x Ø{hole_diameter_gusset} THRU', dxfattribs={'layer': 'ANNOTATION', 'char_height': 5})
+    mt.set_location((gusset_base_width/2, gusset_height + 70), attachment_point=5)
+
+    # --- ANNOTATIONS ---
+    
+    mt = msp.add_mtext("Part ID: cross_brace_gusset_plate", dxfattribs={'layer': 'ANNOTATION', 'char_height': 7})
+    mt.set_location((gusset_base_width/2, gusset_height + 100), attachment_point=5)
+
+    mt = msp.add_mtext(f"Material: PL{gusset_thickness} (EST)", dxfattribs={'layer': 'ANNOTATION', 'char_height': 5})
+    mt.set_location((gusset_base_width/2, gusset_height + 80), attachment_point=5)
+
+    mt = msp.add_mtext("QTY: 1 (typical)", dxfattribs={'layer': 'ANNOTATION', 'char_height': 5})
+    mt.set_location((gusset_base_width/2, gusset_height + 60), attachment_point=5)
+
+    mt = msp.add_mtext(f"Overall: {gusset_base_width}x{gusset_height}mm (max)", dxfattribs={'layer': 'ANNOTATION', 'char_height': 5})
+    mt.set_location((gusset_base_width/2, gusset_height + 40), attachment_point=5)
+
+    doc.saveas(output_filename)
+    print(f'Saved {output_filename}')
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <output_filename.dxf>")
+        sys.exit(1)
+    output_filename = sys.argv[1]
+    create_cross_brace_gusset_plate_dxf(output_filename)

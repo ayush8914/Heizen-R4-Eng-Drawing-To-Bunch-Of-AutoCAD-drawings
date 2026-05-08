@@ -1,0 +1,13 @@
+```json
+{
+  "tower_leg_base_plate": "Square base plate for tower leg, dimensions EST, with multiple bolt holes to connect to foundation. Plate thickness EST. Use the outer faces of the plate as the datums for hole dimensioning.",
+  "leg_splice_plate": "Rectangular splice plate to join tower leg sections. Dimensions EST, with a pattern of bolt holes along the length. Plate thickness EST, likely matching leg material thickness. Use chain dimensioning between holes, datum at one end.",
+  "cross_brace_gusset_plate": "Triangular gusset plate connecting cross braces to the tower leg. Dimensions EST, with bolt holes for brace connection and leg connection. Plate thickness EST. Dimension hole locations relative to plate edges as datums.",
+  "horizontal_brace_connection_plate": "Rectangular plate connecting horizontal braces to the tower leg. Dimensions EST, with bolt holes for brace connection and leg connection. Plate thickness EST. Dimension hole locations relative to plate edges as datums.",
+  "insulator_bracket": "Bracket supporting insulator string, likely a custom fabricated shape. Dimensions EST overall length and height. Must have mounting holes for the insulator string hardware. Material thickness EST. Establish datums on primary mounting faces.",
+  "insulator_lug_plate": "Lug plate connecting the insulator string to the support bracket. Dimensions EST, with a hole for the insulator shackle and bolt holes for bracket connection. Plate thickness EST. Indicate hole diameter with Ø symbol.",
+  "peak_gusset_plate": "Gusset plate at the tower peak, joining multiple members. Dimensions EST, likely triangular shape with multiple bolt holes. Plate thickness EST. Dimension relative to plate edges as datums.",
+  "diagonal_brace_splice_plate": "Rectangular splice plate used to join sections of diagonal bracing members. Dimensions EST, with bolt hole pattern for both sections of the diagonal. Plate thickness EST. Dimension hole locations from plate ends and edges as datums.",
+  "conductor_attachment_plate": "Plate attached to the end of the horizontal arm, used to secure the conductor attachment hardware. Dimensions EST. Include hole sizes/types/locations needed for attachment (likely a mix of threaded and clearance holes). Plate thickness EST."
+}
+```
